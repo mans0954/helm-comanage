@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: mans0954/comanage
+  repository: mans0954/comanage:3.1.0-nami
   tag: latest
   pullPolicy: IfNotPresent
 
