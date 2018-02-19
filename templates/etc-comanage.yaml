@@ -12,7 +12,6 @@ data:
     host:       {{ template "postgresql.fullname" . }}
     login:      comanage
     database:   comanage
-    password:   {{secret "comanage-secrets" "db-password"}}
     prefix:     'cm_'
   shibboleth2.xml: |
     <SPConfig xmlns="urn:mace:shibboleth:2.0:native:sp:config"
@@ -37,7 +36,7 @@ data:
         -->
     
         <!-- The ApplicationDefaults element is where most of Shibboleth's SAML bits are defined. -->
-        <ApplicationDefaults entityID="{{configmap "comanage-env" "entityID"}}"
+        <ApplicationDefaults entityID="{{ .Values.entityID }}"
                              REMOTE_USER="eppn persistent-id targeted-id"
                              cipherSuites="ECDHE+AESGCM:ECDHE:!aNULL:!eNULL:!LOW:!EXPORT:!RC4:!SHA:!SSLv2">
     
@@ -59,7 +58,7 @@ data:
                 (Set discoveryProtocol to "WAYF" for legacy Shibboleth WAYF support.)
                 You can also override entityID on /Login query string, or in RequestMap/htaccess.
                 -->
-                <SSO discoveryProtocol="SAMLDS" discoveryURL="{{configmap "comanage-env" "discoveryURL"}}"> SAML2 SAML1 </SSO>
+                <SSO discoveryProtocol="SAMLDS" discoveryURL="{{ .Values.discoveryURL }}"> SAML2 SAML1 </SSO>
     
     
                 <!-- SAML and local-only logout. -->
