@@ -104,9 +104,7 @@ data:
             <MetadataProvider type="XML" validate="true" file="partner-metadata.xml"/>
             -->
     
-            <MetadataProvider type="XML" validate="false" file="bar-metadata/idp-metadata.xml" legacyOrgNames="true"/>
-    
-    	<MetadataProvider type="XML" validate="false" file="cm-metadata/idp-metadata.xml" legacyOrgNames="true"/>
+            {{ .Values.MetadataProvider }}
     
             <!-- Map to extract attributes from SAML assertions. -->
             <AttributeExtractor type="XML" validate="true" reloadChanges="false" path="attribute-map.xml"/>
