@@ -5,8 +5,8 @@
 replicaCount: 1
 
 image:
-  repository: mans0954/comanage
-  tag: 3.1.0-nami
+  repository: tier/comanage
+  tag: 3.2.0-20190101
   pullPolicy: IfNotPresent
 
 service:
@@ -48,8 +48,8 @@ tolerations: []
 affinity: {}
 
 postgresql:
-  postgresDatabase: "comanage"
-  postgresUser: "comanage"
+  postgresqlDatabase: "comanage"
+  postgresqlUsername: "comanage"
 
 admin_given_name:  'Alfred'
 admin_family_name: 'Wessex'

@@ -28,23 +28,26 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-            - name: DB_PASSWORD
+            - name:  COMANAGE_REGISTRY_DATASOURCE
+              value: Database/Postgres
+            - name:  COMANAGE_REGISTRY_DATABASE
+              value: {{ .Values.postgresql.postgresqlDatabase }}
+            - name:  COMANAGE_REGISTRY_DATABASE_HOST
+              value: {{ template "postgresql.fullname" . }}
+            - name:  COMANAGE_REGISTRY_DATABASE_USER
+              value: {{ .Values.postgresql.postgresqlUsername }}
+            - name:  COMANAGE_REGISTRY_DATABASE_USER_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: {{ template "postgresql.fullname" . }}
-                  key: postgres-password
-            - name: DB_HOST
-              value: {{ template "postgresql.fullname" . }}
-            - name: DB_USER
-              value: "comanage"
-            - name: DB_NAME
-              value: "comanage"
-            - name: ADMIN_GIVEN_NAME
-              value: "Alfred"
-            - name: ADMIN_FAMILY_NAME
-              value: "Wessex"
-            - name: ADMIN_USERNAME
+                  key: postgresql-password
+            - name:  COMANAGE_REGISTRY_ADMIN_GIVEN_NAME
+              value: Alfred
+            - name:  COMANAGE_REGISTRY_ADMIN_FAMILY_NAME
+              value: Wessex
+            - name:  COMANAGE_REGISTRY_ADMIN_USERNAME
               value: "admin@bar.ac.uk"
+
           volumeMounts:
             - mountPath: /etc/comanage
               name: etc-comanage
