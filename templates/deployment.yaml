@@ -56,15 +56,21 @@ spec:
             - name: http
               containerPort: 80
               protocol: TCP
+            - name: https
+              containerPort: 443
+              protocol: TCP
           livenessProbe:
             httpGet:
-              path: /
-              port: http
+              path: /registry/
+              port: https
+              scheme: HTTPS
             initialDelaySeconds: 60
           readinessProbe:
             httpGet:
-              path: /
-              port: http
+              path: /registry/
+              port: https
+              scheme: HTTPS
+            initialDelaySeconds: 60
           resources:
 {{ toYaml .Values.resources | indent 12 }}
     {{- with .Values.nodeSelector }}
