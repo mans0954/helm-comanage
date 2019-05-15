@@ -11,22 +11,23 @@ image:
 
 service:
   type: NodePort
-  port: 80
+  port: 443
 
 ingress:
   enabled: true
-  annotations: {
-    # kubernetes.io/ingress.class: nginx
+  annotations:
     # kubernetes.io/tls-acme: "true"
-    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-  }
+      kubernetes.io/ingress.class: nginx
+      nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      nginx.ingress.kubernetes.io/rewrite-target: /
+      nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
   path: /
   hosts:
     - comanage.tier.minikube
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+  tls:
+  - secretName: minikube-ingress-secret
+  - hosts:
+    - comanage.tier.minikube
 
 MetadataProvider:
 
