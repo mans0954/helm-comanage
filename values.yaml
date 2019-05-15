@@ -52,6 +52,7 @@ affinity: {}
 postgresql:
   postgresqlDatabase: "comanage"
   postgresqlUsername: "comanage"
+  postgresqlPassword: Tamesis
 
 admin_given_name:  'Alfred'
 admin_family_name: 'Wessex'

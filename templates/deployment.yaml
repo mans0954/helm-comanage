@@ -37,10 +37,11 @@ spec:
             - name:  COMANAGE_REGISTRY_DATABASE_USER
               value: {{ .Values.postgresql.postgresqlUsername }}
             - name:  COMANAGE_REGISTRY_DATABASE_USER_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: {{ template "postgresql.fullname" . }}
-                  key: postgresql-password
+              value: Tamesis
+#              valueFrom:
+#                secretKeyRef:
+#                  name: {{ template "postgresql.fullname" . }}
+#                  key: postgresql-password
             - name:  COMANAGE_REGISTRY_ADMIN_GIVEN_NAME
               value: Alfred
             - name:  COMANAGE_REGISTRY_ADMIN_FAMILY_NAME
